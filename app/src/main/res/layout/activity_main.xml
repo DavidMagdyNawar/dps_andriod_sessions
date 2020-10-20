@@ -7,14 +7,24 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
+<ImageView
+    android:id="@+id/dps_image"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/dps"
+    android:layout_margin="64dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello world!"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:text="Hello DPS!"
+        app:layout_constraintEnd_toEndOf="@id/dps_image"
+        app:layout_constraintStart_toStartOf="@id/dps_image"
+        app:layout_constraintTop_toBottomOf="@id/dps_image"
         app:layout_constraintBottom_toBottomOf="parent"
         />
 
