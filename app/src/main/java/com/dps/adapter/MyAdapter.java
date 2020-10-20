@@ -1,27 +1,25 @@
-package com.dps;
+package com.dps.adapter;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+import com.dps.R;
 import com.dps.model.SoftwareEngineer;
 import com.google.android.material.imageview.ShapeableImageView;
 
-import java.lang.ref.SoftReference;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private List<SoftwareEngineer> softwareEngineerList;
     private Context context;
 
+    //constructor
     public MyAdapter(List<SoftwareEngineer> softwareEngineerList, Context context) {
         this.softwareEngineerList = softwareEngineerList;
         this.context = context;
@@ -38,7 +36,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     // This method is used for binding the data to it's position on the recycler view - check " position " parameter passed to it
-
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         SoftwareEngineer softwareEngineer = softwareEngineerList.get(position);
@@ -55,6 +52,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return softwareEngineerList.size();
     }
 
+    // cast views from the view holder
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView name, title;
         public ShapeableImageView image;

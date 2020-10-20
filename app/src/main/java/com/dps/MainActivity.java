@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dps.adapter.MyAdapter;
 import com.dps.model.SoftwareEngineer;
 
 import java.util.ArrayList;
@@ -23,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
     TODO 3- create a layout for the recycler view item
      for the sake of the example I'm using Card View ( add card view dependency in " build.gradle " ( app module )
      */
-    // TODO 4- create an Adapter
+    // TODO 4- create an Adapter for the recycler view
+    // TODO 5- Create data model - in our case " SoftwareEngineer " Data Model
+    // TODO 6- Attach the adapter to the recycler view with the prepared data
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,48 +34,51 @@ public class MainActivity extends AppCompatActivity {
 
         //cast recycler view
         RecyclerView recyclerView = findViewById(R.id.myRecyclerView);
-
-        mAdapter = new MyAdapter( softwareEngineerList,this);
+        //pass our software engineers list to our adapter
+        mAdapter = new MyAdapter(softwareEngineerList, this);
+        // set the layout manager for our recycler view as a lienar layout manager
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
+        //set some cool default animation
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        //attach our adapter with the recycler view
         recyclerView.setAdapter(mAdapter);
 
         prepareSoftwareEngineerData();
     }
 
     private void prepareSoftwareEngineerData() {
-        SoftwareEngineer softwareEngineer = new SoftwareEngineer("Daniel Bedo", "Head of Software Engineering","");
+        SoftwareEngineer softwareEngineer = new SoftwareEngineer("Daniel Bedo", "Head of Software Engineering", "");
         softwareEngineerList.add(softwareEngineer);
 
-        softwareEngineer = new SoftwareEngineer("Bela Sinoimeri","Software Engineer","");
+        softwareEngineer = new SoftwareEngineer("Bela Sinoimeri", "Software Engineer", "");
         softwareEngineerList.add(softwareEngineer);
 
-        softwareEngineer = new SoftwareEngineer("David Riad","Android developer","");
+        softwareEngineer = new SoftwareEngineer("David Riad", "Android developer", "");
         softwareEngineerList.add(softwareEngineer);
 
-        softwareEngineer = new SoftwareEngineer("Thanos","Software Engineer - Web","");
+        softwareEngineer = new SoftwareEngineer("Thanos", "Software Engineer - Web", "");
         softwareEngineerList.add(softwareEngineer);
 
-        softwareEngineer = new SoftwareEngineer("Thilakar","Software Engineer - Mobile ","");
+        softwareEngineer = new SoftwareEngineer("Thilakar", "Software Engineer - Mobile ", "");
         softwareEngineerList.add(softwareEngineer);
 
-        softwareEngineer = new SoftwareEngineer("Magda","Software Engineer - iOS","");
+        softwareEngineer = new SoftwareEngineer("Magda", "Software Engineer - iOS", "");
         softwareEngineerList.add(softwareEngineer);
 
-        softwareEngineer = new SoftwareEngineer("Manoj","Software Engineer - React Native ","");
+        softwareEngineer = new SoftwareEngineer("Manoj", "Software Engineer - React Native ", "");
         softwareEngineerList.add(softwareEngineer);
 
-        softwareEngineer = new SoftwareEngineer("Natasha","Software Engineer - Backend","");
+        softwareEngineer = new SoftwareEngineer("Natasha", "Software Engineer - Backend", "");
         softwareEngineerList.add(softwareEngineer);
 
-        softwareEngineer = new SoftwareEngineer("Chris","Software Engineer - Node.js","");
+        softwareEngineer = new SoftwareEngineer("Chris", "Software Engineer - Node.js", "");
         softwareEngineerList.add(softwareEngineer);
 
-        softwareEngineer = new SoftwareEngineer("Daniel","Software Engineer - Android","");
+        softwareEngineer = new SoftwareEngineer("Daniel", "Software Engineer - Android", "");
         softwareEngineerList.add(softwareEngineer);
 
-
+        //notify the adapter that new data has to be shown on the recycler view
         mAdapter.notifyDataSetChanged();
 
     }
