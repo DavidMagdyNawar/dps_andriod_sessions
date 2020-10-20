@@ -5,7 +5,11 @@ public class SoftwareEngineer {
     String title;
     String image;
 
+    public SoftwareEngineer() {
+    }
+
     public SoftwareEngineer(String name, String title, String image) {
+
         this.name = name;
         this.title = title;
         this.image = image;

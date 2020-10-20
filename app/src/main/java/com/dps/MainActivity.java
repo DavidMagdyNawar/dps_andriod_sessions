@@ -2,6 +2,7 @@ package com.dps;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dps.adapter.MyAdapter;
 import com.dps.model.SoftwareEngineer;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     // TODO 4- create an Adapter for the recycler view
     // TODO 5- Create data model - in our case " SoftwareEngineer " Data Model
     // TODO 6- Attach the adapter to the recycler view with the prepared data
+    // TODO 7- Adding firebase dependency to " app.module " file , adding google services and google plugins ( check firebase docmentation )
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +51,32 @@ public class MainActivity extends AppCompatActivity {
         //attach our adapter with the recycler view
         recyclerView.setAdapter(mAdapter);
 
-        prepareSoftwareEngineerData();
+//        prepareSoftwareEngineerData();
+          firebasePrepareSoftwareEngineerData();
+    }
+
+    private void firebasePrepareSoftwareEngineerData() {
+
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+
+        db.getReference().child("se").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                softwareEngineerList.clear();
+                for (DataSnapshot datasnapshot : snapshot.getChildren()) {
+                    SoftwareEngineer softwareEngineer = datasnapshot.getValue(SoftwareEngineer.class);
+                    if(softwareEngineer!= null){
+                        softwareEngineerList.add(softwareEngineer);
+                    }
+                }
+                mAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     private void prepareSoftwareEngineerData() {

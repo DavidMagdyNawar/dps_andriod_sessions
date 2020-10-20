@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.dps.R;
 import com.dps.model.SoftwareEngineer;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -41,7 +42,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         SoftwareEngineer softwareEngineer = softwareEngineerList.get(position);
         holder.name.setText(softwareEngineer.getName());
         holder.title.setText(softwareEngineer.getTitle());
-//        Glide.with(context).load(softwareEngineer.getImage()).circleCrop().into(holder.image);
+        Glide.with(context).load(softwareEngineer.getImage()).circleCrop().into(holder.image);
 
     }
 
