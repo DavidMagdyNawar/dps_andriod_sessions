@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dps.R
 import com.dps.adapter.MyAdapter
 import com.dps.model.SoftwareEngineer
+import com.dps.snackbar
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -33,7 +34,8 @@ class MainActivityKotlin : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_kotlin)
 
-        // TODO : in Kotlin I don't need casting, just add Kotlin extension to your build.gradle ( app module )
+        /* TODO : in Kotlin we don't need casting, just add Kotlin extension to your build.gradle ( app module )
+            and access the view name property from the class directly */
 //        val recyclerView = findViewById<RecyclerView>(R.id.myRecyclerView)
 
         //pass our software engineers list to our adapter
@@ -61,6 +63,7 @@ class MainActivityKotlin : AppCompatActivity() {
                     }
                 }
                 mAdapter?.notifyDataSetChanged()
+                myLayout.snackbar("Data loaded successfully")
             }
             override fun onCancelled(error: DatabaseError) {}
         })
